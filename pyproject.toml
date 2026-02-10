@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "qualitygate-python-tests"
+version = "0.1.0"
+description = "Python QA automation project skeleton for UI and API testing."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "pytest",
+    "pytest-xdist",
+    "pytest-html",
+    "requests",
+    "playwright",
+    "pytest-playwright",
+    "ruff",
+    "black",
+]
+
+[tool.ruff]
+line-length = 88
+target-version = "py310"
+src = ["tests"]
+extend-exclude = ["venv", ".venv", ".git", "__pycache__"]
+
+[tool.black]
+line-length = 88
+target-version = ["py310"]
+include = "\\.pyi?$"
+exclude = "/(\\.git|\\.venv|venv|__pycache__)/"
+

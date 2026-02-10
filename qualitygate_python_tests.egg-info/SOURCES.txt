@@ -1,0 +1,6 @@
+pyproject.toml
+qualitygate_python_tests.egg-info/PKG-INFO
+qualitygate_python_tests.egg-info/SOURCES.txt
+qualitygate_python_tests.egg-info/dependency_links.txt
+qualitygate_python_tests.egg-info/requires.txt
+qualitygate_python_tests.egg-info/top_level.txt

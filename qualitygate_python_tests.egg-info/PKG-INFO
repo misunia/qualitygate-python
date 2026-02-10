@@ -1,0 +1,14 @@
+Metadata-Version: 2.4
+Name: qualitygate-python-tests
+Version: 0.1.0
+Summary: Python QA automation project skeleton for UI and API testing.
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: pytest
+Requires-Dist: pytest-xdist
+Requires-Dist: pytest-html
+Requires-Dist: requests
+Requires-Dist: playwright
+Requires-Dist: pytest-playwright
+Requires-Dist: ruff
+Requires-Dist: black

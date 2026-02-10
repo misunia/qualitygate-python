@@ -1,0 +1,8 @@
+pytest
+pytest-xdist
+pytest-html
+requests
+playwright
+pytest-playwright
+ruff
+black

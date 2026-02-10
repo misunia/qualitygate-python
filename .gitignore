@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+
+# Virtual env
+.venv/
+venv/
+
+# Reports / artifacts
+reports/
+playwright-report/
+test-results/
+
+# IDE
+.vscode/
+.idea/
+
+# Temp
+get-pip.py

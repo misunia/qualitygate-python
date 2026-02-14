@@ -89,6 +89,13 @@ jobs:
           name: reports
           path: public
 
+          
+      - name: Prepare Pages content
+        run: |
+          mkdir -p public
+          cp reports/report.html public/index.html
+
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v4
         with:

@@ -77,10 +77,10 @@ jobs:
         run: docker compose down
 
   deploy:
+    id: deploy
     needs: tests
     if: success() && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-    environment: github-pages
 
     steps:
       - name: Download reports
@@ -90,7 +90,7 @@ jobs:
           path: public
 
       - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: public
 
@@ -100,10 +100,12 @@ jobs:
     permissions:
       pages: write
       id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
       - name: Deploy to GitHub Pages
+        id: deployment
         uses: actions/deploy-pages@v4
-        with:
-          job_id: ${{ needs.deploy.outputs.job_id }}
 

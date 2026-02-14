@@ -81,22 +81,18 @@ jobs:
       if: success() && github.ref == 'refs/heads/main'
       runs-on: ubuntu-latest
       steps:
-        - name: Download reports
-          uses: actions/download-artifact@v4
-          with:
-            name: reports
-            path: reports
-  
-        - name: Prepare Pages content
-          run: |
-            mkdir -p public
-            cp reports/report.html public/index.html
-  
-        - name: Upload Pages artifact
-          uses: actions/upload-pages-artifact@v4
-          with:
-            path: public
-  
+      - name: Download reports
+        uses: actions/download-artifact@v4
+        with:
+          name: reports
+          path: reports
+
+      - name: Prepare Pages content
+        run: |
+          mkdir -p public
+          cp reports/report.html public/index.html
+
+
     deploy-pages:
       needs: deploy
       runs-on: ubuntu-latest

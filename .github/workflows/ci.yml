@@ -76,43 +76,39 @@ jobs:
         if: always()
         run: docker compose down
 
-  deploy:
-    id: deploy
-    needs: tests
-    if: success() && github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Download reports
-        uses: actions/download-artifact@v4
-        with:
-          name: reports
-          path: public
-
-          
-      - name: Prepare Pages content
-        run: |
-          mkdir -p public
-          cp reports/report.html public/index.html
-
-
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v4
-        with:
-          path: public
-
-  deploy-pages:
-    needs: deploy
-    runs-on: ubuntu-latest
-    permissions:
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      deploy:
+      needs: tests
+      if: success() && github.ref == 'refs/heads/main'
+      runs-on: ubuntu-latest
+      steps:
+        - name: Download reports
+          uses: actions/download-artifact@v4
+          with:
+            name: reports
+            path: reports
+  
+        - name: Prepare Pages content
+          run: |
+            mkdir -p public
+            cp reports/report.html public/index.html
+  
+        - name: Upload Pages artifact
+          uses: actions/upload-pages-artifact@v4
+          with:
+            path: public
+  
+    deploy-pages:
+      needs: deploy
+      runs-on: ubuntu-latest
+      permissions:
+        pages: write
+        id-token: write
+      environment:
+        name: github-pages
+        url: ${{ steps.deployment.outputs.page_url }}
+  
+      steps:
+        - name: Deploy to GitHub Pages
+          id: deployment
+          uses: actions/deploy-pages@v4
 
